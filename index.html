@@ -121,9 +121,11 @@
   @keyframes spin { to { transform: rotate(360deg); } }
   @keyframes bob { 50% { transform: translateY(-6px); } }
   @keyframes twinkle { 50% { opacity: .25; } }
+  .draw { stroke-dasharray: 600; animation: draw 3s ease-in-out infinite; }
+  @keyframes draw { 0% { stroke-dashoffset: 600; } 60%, 100% { stroke-dashoffset: 0; } }
   @keyframes fly { 50% { transform: translateY(-10px); } }
   @media (prefers-reduced-motion: reduce) {
-    .spin, .bob, .twinkle, .fly, .card { animation: none; opacity: 1; transform: none; }
+    .spin, .bob, .twinkle, .fly, .draw, .card { animation: none; opacity: 1; transform: none; }
   }
   footer {
     text-align: center;
@@ -163,6 +165,26 @@ const BASE = "https://tymurius2-arch.github.io/";
 const art = {
 
 
+
+  "perfect-circle": `
+    <rect width="400" height="300" fill="#fff7e8"/>
+    <circle cx="200" cy="150" r="5" fill="#1d1d1f"/>
+    <path class="draw" d="M200 60 C252 58 292 98 290 150 C289 204 248 242 198 240 C146 239 108 200 110 148 C112 100 150 63 204 62" fill="none" stroke="#22c55e" stroke-width="10" stroke-linecap="round"/>
+    <text x="200" y="160" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="900" font-size="40" fill="#1d1d1f">97.3%</text>`,
+
+  "city-rng": `
+    <defs><linearGradient id="cr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a1b5c"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
+    <rect width="400" height="300" fill="url(#cr)"/>
+    ${stars(20, "#fff", 120)}
+    <g fill="#1e1440"><rect x="20" y="150" width="50" height="150"/><rect x="75" y="110" width="40" height="190"/><rect x="290" y="130" width="45" height="170"/><rect x="340" y="170" width="45" height="130"/></g>
+    <g fill="#ffd43b" opacity=".8"><rect x="30" y="165" width="8" height="10"/><rect x="50" y="195" width="8" height="10"/><rect x="85" y="130" width="8" height="10"/><rect x="100" y="170" width="8" height="10"/><rect x="300" y="150" width="8" height="10"/><rect x="318" y="190" width="8" height="10"/><rect x="355" y="190" width="8" height="10"/></g>
+    <g class="bob">
+      <path d="M150 140 L200 115 L250 140 L200 165Z" fill="#fcd34d"/>
+      <path d="M150 140 L200 165 V235 L150 210Z" fill="#f59e0b"/>
+      <path d="M250 140 L200 165 V235 L250 210Z" fill="#d97706"/>
+      <path d="M175 127 L225 152 V222" stroke="#fff7d6" stroke-width="8" fill="none" opacity=".8"/>
+      <text x="200" y="100" text-anchor="middle" font-size="40" class="twinkle">✨</text>
+    </g>`,
 
   "aquarium": `
     <defs><linearGradient id="aq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3ec7e0"/><stop offset="1" stop-color="#0d5a8c"/></linearGradient></defs>
@@ -223,6 +245,8 @@ const art = {
 };
 
 const projects = [
+  { id: "perfect-circle", title: "Нарисуй идеальный круг", desc: "Насколько ровно ты рисуешь?" },
+  { id: "city-rng",       title: "Город удачи",     desc: "Открывай кейсы и собирай редкие здания" },
   { id: "aquarium",       title: "Эволюция",        desc: "От первой клетки до человека — и ещё 160 существ" },
   { id: "rocket-builder", title: "Ракетостроитель", desc: "Собери 3D-ракету и улети на орбиту" },
   { id: "rick-morty",     title: "Рик и Морти",     desc: "Аркада: побег через порталы" },
