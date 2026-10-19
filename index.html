@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тимур — игры и сайты</title>
+<meta name="description" content="Все мои игры, сайты и программы на одной странице.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #1d1d1f;
+    --muted: #6e6e73;
+    --card-shadow: 0 1px 2px rgba(0,0,0,.06), 0 6px 20px rgba(0,0,0,.06);
+    --card-shadow-hover: 0 4px 10px rgba(0,0,0,.08), 0 18px 40px rgba(0,0,0,.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111114;
+      --text: #f5f5f7;
+      --muted: #9a9aa2;
+      --card-shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
+      --card-shadow-hover: 0 4px 10px rgba(0,0,0,.5), 0 18px 40px rgba(0,0,0,.55);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  header {
+    text-align: center;
+    padding: 64px 16px 36px;
+  }
+  .logo {
+    display: inline-block;
+    font-size: clamp(44px, 9vw, 84px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    margin: 0;
+    line-height: 1;
+  }
+  .logo span { display: inline-block; transition: transform .25s cubic-bezier(.3,1.6,.6,1); }
+  .logo:hover span:nth-child(odd) { transform: translateY(-6px) rotate(-4deg); }
+  .logo:hover span:nth-child(even) { transform: translateY(4px) rotate(3deg); }
+  .tagline {
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: 19px;
+    font-weight: 600;
+  }
+  main {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 16px 40px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 28px 24px;
+  }
+  .card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise .5s ease forwards;
+  }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  .thumb {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .thumb svg { display: block; width: 100%; height: 100%; }
+  .card:hover .thumb, .card:focus-visible .thumb {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: var(--card-shadow-hover);
+  }
+  .card:focus-visible { outline: none; }
+  .card:focus-visible .thumb { outline: 3px solid #4f7cff; outline-offset: 3px; }
+  .badge {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: rgba(0,0,0,.55);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 4px 9px;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+  }
+  .title {
+    margin: 14px 4px 2px;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .desc {
+    margin: 0 4px;
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  /* small animations inside thumbnails */
+  .spin { transform-box: fill-box; transform-origin: center; animation: spin 14s linear infinite; }
+  .bob { animation: bob 3s ease-in-out infinite; }
+  .twinkle { animation: twinkle 2.4s ease-in-out infinite; }
+  .fly { animation: fly 2.6s ease-in-out infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes bob { 50% { transform: translateY(-6px); } }
+  @keyframes twinkle { 50% { opacity: .25; } }
+  @keyframes fly { 50% { transform: translateY(-10px); } }
+  @media (prefers-reduced-motion: reduce) {
+    .spin, .bob, .twinkle, .fly, .card { animation: none; opacity: 1; transform: none; }
+  }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 20px 16px 48px;
+  }
+  footer a { color: inherit; }
+  @media (max-width: 560px) {
+    header { padding-top: 44px; }
+    .grid { grid-template-columns: 1fr 1fr; gap: 22px 14px; }
+    .title { font-size: 16px; margin-top: 10px; }
+    .desc { font-size: 13px; }
+    .badge { font-size: 10px; padding: 3px 7px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1 class="logo" aria-label="tymur.fun"><span>t</span><span>y</span><span>m</span><span>u</span><span>r</span><span>.</span><span>f</span><span>u</span><span>n</span></h1>
+  <p class="tagline">Игры, сайты и всякие штуки, которые я сделал</p>
+</header>
+
+<main>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>
+  Код всех проектов — на <a href="https://github.com/tymurius2-arch">GitHub</a>
+</footer>
+
+<script>
+const BASE = "https://tymurius2-arch.github.io/";
+
+// Каждая картинка нарисована кодом (SVG 400×300), без файлов.
+const art = {
+  "event-horizon": `
+    <rect width="400" height="300" fill="#07060f"/>
+    ${stars(40, "#fff")}
+    <g class="spin"><ellipse cx="200" cy="150" rx="150" ry="34" fill="none" stroke="#ff9d3b" stroke-width="10" opacity=".85"/>
+    <ellipse cx="200" cy="150" rx="120" ry="24" fill="none" stroke="#ffd36b" stroke-width="5" opacity=".9"/></g>
+    <circle cx="200" cy="150" r="62" fill="#ffb347" opacity=".35"/>
+    <circle cx="200" cy="150" r="52" fill="#000"/>
+    <path d="M60 150 Q200 110 340 150" stroke="#ffcf6b" stroke-width="7" fill="none" opacity=".9"/>`,
+
+  "star-voyage": `
+    <defs><linearGradient id="sv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b1350"/><stop offset="1" stop-color="#4a1f7a"/></linearGradient></defs>
+    <rect width="400" height="300" fill="url(#sv)"/>
+    ${stars(50, "#fff")}
+    <circle cx="320" cy="70" r="34" fill="#ff7eb6"/><ellipse cx="320" cy="70" rx="56" ry="12" fill="none" stroke="#ffd1e6" stroke-width="4"/>
+    <circle cx="70" cy="240" r="60" fill="#3fd0c9"/><circle cx="50" cy="225" r="10" fill="#2aa9a3"/><circle cx="85" cy="260" r="7" fill="#2aa9a3"/>
+    <g class="fly"><g transform="translate(200 160) rotate(-30)">
+      <path d="M0 -50 C18 -30 18 20 12 34 L-12 34 C-18 20 -18 -30 0 -50Z" fill="#f2f2f7"/>
+      <circle cx="0" cy="-10" r="9" fill="#5ab0ff" stroke="#2c6fc0" stroke-width="3"/>
+      <path d="M-12 14 L-28 38 L-12 34Z M12 14 L28 38 L12 34Z" fill="#ff5a5a"/>
+      <path d="M-9 36 Q0 70 9 36Z" fill="#ffb02e"/></g></g>`,
+
+  "cubomir": `
+    <rect width="400" height="300" fill="#8fd3ff"/>
+    <circle cx="330" cy="60" r="26" fill="#fff6a8"/>
+    <rect x="40" y="50" width="70" height="16" fill="#fff"/><rect x="58" y="38" width="40" height="14" fill="#fff"/>
+    ${cubes()}`,
+
+  "aquarium": `
+    <defs><linearGradient id="aq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3ec7e0"/><stop offset="1" stop-color="#0d5a8c"/></linearGradient></defs>
+    <rect width="400" height="300" fill="url(#aq)"/>
+    <path d="M0 270 Q100 250 200 268 T400 262 V300 H0Z" fill="#e8c77a"/>
+    <path d="M60 268 q-10 -40 6 -80 q-14 40 -2 80Z M330 266 q14 -50 -4 -100 q22 50 10 100Z" fill="#2f9e5b"/>
+    <g class="bob"><circle cx="110" cy="130" r="22" fill="#a7f070" opacity=".85"/><circle cx="104" cy="124" r="6" fill="#4c8f2c"/></g>
+    <g class="fly"><path d="M190 150 q40 -34 80 0 q-40 34 -80 0Z" fill="#ff8a3d"/><path d="M270 150 l26 -18 v36Z" fill="#ff8a3d"/><circle cx="208" cy="145" r="5" fill="#222"/></g>
+    <g class="bob"><path d="M250 80 q22 -18 44 0 q-22 18 -44 0Z" fill="#ffd43b"/><path d="M294 80 l14 -10 v20Z" fill="#ffd43b"/><circle cx="260" cy="77" r="3" fill="#222"/></g>
+    <circle cx="150" cy="70" r="5" fill="none" stroke="#fff" stroke-width="2" class="twinkle"/><circle cx="160" cy="50" r="3.5" fill="none" stroke="#fff" stroke-width="2" class="twinkle"/>`,
+
+  "rocket-builder": `
+    <defs><linearGradient id="rb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1e4a"/><stop offset=".6" stop-color="#3b6fd8"/><stop offset="1" stop-color="#ffb36b"/></linearGradient></defs>
+    <rect width="400" height="300" fill="url(#rb)"/>
+    ${stars(18, "#fff", 140)}
+    <rect x="0" y="270" width="400" height="30" fill="#4b4f5c"/>
+    <rect x="245" y="120" width="10" height="150" fill="#9aa0ad"/><rect x="215" y="140" width="40" height="6" fill="#9aa0ad"/><rect x="215" y="200" width="40" height="6" fill="#9aa0ad"/>
+    <g class="bob">
+      <path d="M190 40 C210 60 214 80 214 100 H166 C166 80 170 60 190 40Z" fill="#ff4d4d"/>
+      <rect x="166" y="100" width="48" height="110" fill="#f4f4f6"/>
+      <rect x="166" y="150" width="48" height="10" fill="#222"/>
+      <circle cx="190" cy="125" r="11" fill="#5ab0ff" stroke="#2c4a8a" stroke-width="4"/>
+      <path d="M166 180 L146 230 L166 220Z M214 180 L234 230 L214 220Z" fill="#ff4d4d"/>
+      <path d="M172 210 H208 L202 228 H178Z" fill="#555"/>
+      <path d="M178 230 Q190 270 202 230Z" fill="#ffb02e" class="twinkle"/>
+    </g>`,
+
+  "rick-morty": `
+    <rect width="400" height="300" fill="#0d1b12"/>
+    ${stars(30, "#d6ffd0")}
+    <g class="spin"><circle cx="270" cy="140" r="78" fill="#7cff4f" opacity=".25"/>
+      <path d="M270 70 a70 70 0 1 1 -1 0" fill="none" stroke="#7cff4f" stroke-width="16" stroke-dasharray="40 14"/></g>
+    <circle cx="270" cy="140" r="52" fill="#b4ff7a"/><circle cx="270" cy="140" r="34" fill="#3fdc3f"/>
+    <g class="fly"><ellipse cx="120" cy="180" rx="70" ry="18" fill="#9aa3b5"/><ellipse cx="120" cy="170" rx="34" ry="22" fill="#aee7ff" opacity=".85"/>
+      <circle cx="70" cy="184" r="4" fill="#ffe14d"/><circle cx="95" cy="190" r="4" fill="#ffe14d"/><circle cx="145" cy="190" r="4" fill="#ffe14d"/><circle cx="170" cy="184" r="4" fill="#ffe14d"/></g>`,
+
+  "frontline": `
+    <rect width="400" height="300" fill="#e9ecd8"/>
+    <path d="M0 0 H400 V300 H0Z" fill="#dfe6c5"/>
+    <path d="M250 0 C230 60 280 90 255 140 C235 180 290 220 260 300 H400 V0Z" fill="#e05252" opacity=".85"/>
+    <path d="M250 0 C230 60 280 90 255 140 C235 180 290 220 260 300" fill="none" stroke="#7a1f1f" stroke-width="4" stroke-dasharray="10 6"/>
+    <path d="M30 120 C90 100 150 150 220 130 S330 170 400 150" fill="none" stroke="#6fb3e0" stroke-width="7"/>
+    <g fill="#2f5bd3"><rect x="150" y="80" width="34" height="22" rx="3"/><rect x="170" y="190" width="34" height="22" rx="3"/><rect x="110" y="230" width="34" height="22" rx="3"/></g>
+    <g stroke="#fff" stroke-width="3"><path d="M150 80 L184 102 M184 80 L150 102"/><path d="M170 190 L204 212 M204 190 L170 212"/><path d="M110 230 L144 252 M144 230 L110 252"/></g>
+    <g class="bob"><path d="M195 95 L238 115" stroke="#2f5bd3" stroke-width="6" stroke-linecap="round"/><path d="M238 115 l-14 -12 l-2 16Z" fill="#2f5bd3"/></g>`,
+
+  "price-guess": `
+    <rect width="400" height="300" fill="#ffd84d"/>
+    <circle cx="70" cy="60" r="70" fill="#ffe789"/><circle cx="350" cy="260" r="90" fill="#ffc21a"/>
+    <g class="bob"><g transform="rotate(-8 200 150)">
+      <path d="M120 100 H260 L300 150 L260 200 H120Z" fill="#fff" stroke="#1d1d1f" stroke-width="6" stroke-linejoin="round"/>
+      <circle cx="265" cy="150" r="10" fill="#ffd84d" stroke="#1d1d1f" stroke-width="5"/>
+      <text x="190" y="168" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="900" font-size="52" fill="#1d1d1f">???₴</text>
+    </g></g>`,
+
+  "school-portal": `
+    <rect width="400" height="300" fill="#4f7cff"/>
+    <rect x="0" y="230" width="400" height="70" fill="#6ad08a"/>
+    <path d="M110 120 L200 70 L290 120Z" fill="#e2493b"/>
+    <rect x="120" y="120" width="160" height="110" fill="#fff4e0"/>
+    <g fill="#8fd3ff"><rect x="135" y="140" width="28" height="26"/><rect x="237" y="140" width="28" height="26"/><rect x="135" y="185" width="28" height="26"/><rect x="237" y="185" width="28" height="26"/></g>
+    <rect x="184" y="180" width="32" height="50" fill="#a86b3c"/>
+    <circle cx="200" cy="104" r="12" fill="#fff"/><path d="M200 97 V104 L205 108" stroke="#1d1d1f" stroke-width="2.5" fill="none"/>
+    <g class="fly"><path d="M300 60 q20 -14 40 0 q-20 -4 -40 0Z" fill="#fff"/></g>`,
+
+
+};
+
+const projects = [
+  { id: "event-horizon",  title: "Event Horizon",   desc: "Космос и чёрные дыры" },
+  { id: "star-voyage",    title: "Star Voyage",     desc: "Путешествие к звёздам" },
+  { id: "cubomir",        title: "Кубомир",         desc: "Мир, собранный из кубиков" },
+  { id: "aquarium",       title: "Эволюция",        desc: "От первой клетки до человека — и ещё 160 существ" },
+  { id: "rocket-builder", title: "Ракетостроитель", desc: "Собери 3D-ракету и улети на орбиту" },
+  { id: "rick-morty",     title: "Рик и Морти",     desc: "Аркада: побег через порталы" },
+  { id: "frontline",      title: "Линия фронта",    desc: "Стратегия на настоящей карте" },
+  { id: "price-guess",    title: "Угадай цену",     desc: "Назови цену товара быстрее ИИ" },
+  { id: "school-portal",  title: "Школьный портал", desc: "Сайт класса: чат, новости, мини-игры" },
+];
+
+function rand(seed) { let s = seed; return () => (s = (s * 16807) % 2147483647) / 2147483647; }
+function stars(n, color, maxY = 300) {
+  const r = rand(n * 97 + maxY);
+  let out = "";
+  for (let i = 0; i < n; i++) {
+    const cls = i % 4 === 0 ? ' class="twinkle"' : "";
+    out += `<circle${cls} cx="${(r() * 400).toFixed(1)}" cy="${(r() * maxY).toFixed(1)}" r="${(r() * 1.6 + .5).toFixed(1)}" fill="${color}" style="animation-delay:${(r() * 2).toFixed(2)}s"/>`;
+  }
+  return out;
+}
+function cubes() {
+  // изометрические кубики: трава, земля, камень
+  const s = 26, out = [];
+  const iso = (x, y, z) => [200 + (x - y) * s, 175 + (x + y) * s / 2 - z * s];
+  const colors = { g: ["#7ccf4a", "#5aa834", "#3f8a24"], d: ["#b98552", "#94653a", "#7a5130"], s: ["#a9aeb8", "#878c96", "#6d717a"], w: ["#c4884a", "#9c6a36", "#83582c"], l: ["#4fbf4f", "#3a9c3a", "#2c7e2c"] };
+  const blocks = [];
+  for (let x = -2; x <= 2; x++) for (let y = -2; y <= 2; y++) {
+    blocks.push([x, y, 0, "d"]);
+    blocks.push([x, y, 1, (x === 2 && y === -2) ? "s" : "g"]);
+  }
+  blocks.push([2, -2, 2, "s"]);
+  blocks.push([-1, 0, 2, "w"], [-1, 0, 3, "w"], [-1, 0, 4, "l"], [-2, 0, 4, "l"], [-1, 1, 4, "l"], [-1, -1, 4, "l"], [0, 0, 4, "l"], [-1, 0, 5, "l"]);
+  blocks.sort((a, b) => (a[0] + a[1]) - (b[0] + b[1]) || a[2] - b[2]);
+  for (const [x, y, z, k] of blocks) {
+    const [cx, cy] = iso(x, y, z), c = colors[k], h = s / 2;
+    out.push(`<path d="M${cx} ${cy - s} l${s} ${h} l${-s} ${h} l${-s} ${-h}Z" fill="${c[0]}"/>`);
+    out.push(`<path d="M${cx - s} ${cy - h} l${s} ${h} v${s} l${-s} ${-h}Z" fill="${c[1]}"/>`);
+    out.push(`<path d="M${cx + s} ${cy - h} l${-s} ${h} v${s} l${s} ${-h}Z" fill="${c[2]}"/>`);
+  }
+  return out.join("");
+}
+
+const grid = document.getElementById("grid");
+projects.forEach((p, i) => {
+  const a = document.createElement("a");
+  a.className = "card";
+  a.href = p.href || BASE + p.id + "/";
+  a.style.animationDelay = (i * 0.05) + "s";
+  a.innerHTML = `
+    <div class="thumb">
+      <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${art[p.id]}</svg>
+      ${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
+    </div>
+    <h2 class="title">${p.title}</h2>
+    <p class="desc">${p.desc}</p>`;
+  grid.appendChild(a);
+});
+</script>
+</body>
+</html>
