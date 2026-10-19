@@ -161,32 +161,8 @@ const BASE = "https://tymurius2-arch.github.io/";
 
 // Каждая картинка нарисована кодом (SVG 400×300), без файлов.
 const art = {
-  "event-horizon": `
-    <rect width="400" height="300" fill="#07060f"/>
-    ${stars(40, "#fff")}
-    <g class="spin"><ellipse cx="200" cy="150" rx="150" ry="34" fill="none" stroke="#ff9d3b" stroke-width="10" opacity=".85"/>
-    <ellipse cx="200" cy="150" rx="120" ry="24" fill="none" stroke="#ffd36b" stroke-width="5" opacity=".9"/></g>
-    <circle cx="200" cy="150" r="62" fill="#ffb347" opacity=".35"/>
-    <circle cx="200" cy="150" r="52" fill="#000"/>
-    <path d="M60 150 Q200 110 340 150" stroke="#ffcf6b" stroke-width="7" fill="none" opacity=".9"/>`,
 
-  "star-voyage": `
-    <defs><linearGradient id="sv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b1350"/><stop offset="1" stop-color="#4a1f7a"/></linearGradient></defs>
-    <rect width="400" height="300" fill="url(#sv)"/>
-    ${stars(50, "#fff")}
-    <circle cx="320" cy="70" r="34" fill="#ff7eb6"/><ellipse cx="320" cy="70" rx="56" ry="12" fill="none" stroke="#ffd1e6" stroke-width="4"/>
-    <circle cx="70" cy="240" r="60" fill="#3fd0c9"/><circle cx="50" cy="225" r="10" fill="#2aa9a3"/><circle cx="85" cy="260" r="7" fill="#2aa9a3"/>
-    <g class="fly"><g transform="translate(200 160) rotate(-30)">
-      <path d="M0 -50 C18 -30 18 20 12 34 L-12 34 C-18 20 -18 -30 0 -50Z" fill="#f2f2f7"/>
-      <circle cx="0" cy="-10" r="9" fill="#5ab0ff" stroke="#2c6fc0" stroke-width="3"/>
-      <path d="M-12 14 L-28 38 L-12 34Z M12 14 L28 38 L12 34Z" fill="#ff5a5a"/>
-      <path d="M-9 36 Q0 70 9 36Z" fill="#ffb02e"/></g></g>`,
 
-  "cubomir": `
-    <rect width="400" height="300" fill="#8fd3ff"/>
-    <circle cx="330" cy="60" r="26" fill="#fff6a8"/>
-    <rect x="40" y="50" width="70" height="16" fill="#fff"/><rect x="58" y="38" width="40" height="14" fill="#fff"/>
-    ${cubes()}`,
 
   "aquarium": `
     <defs><linearGradient id="aq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3ec7e0"/><stop offset="1" stop-color="#0d5a8c"/></linearGradient></defs>
@@ -242,29 +218,16 @@ const art = {
       <text x="190" y="168" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="900" font-size="52" fill="#1d1d1f">???₴</text>
     </g></g>`,
 
-  "school-portal": `
-    <rect width="400" height="300" fill="#4f7cff"/>
-    <rect x="0" y="230" width="400" height="70" fill="#6ad08a"/>
-    <path d="M110 120 L200 70 L290 120Z" fill="#e2493b"/>
-    <rect x="120" y="120" width="160" height="110" fill="#fff4e0"/>
-    <g fill="#8fd3ff"><rect x="135" y="140" width="28" height="26"/><rect x="237" y="140" width="28" height="26"/><rect x="135" y="185" width="28" height="26"/><rect x="237" y="185" width="28" height="26"/></g>
-    <rect x="184" y="180" width="32" height="50" fill="#a86b3c"/>
-    <circle cx="200" cy="104" r="12" fill="#fff"/><path d="M200 97 V104 L205 108" stroke="#1d1d1f" stroke-width="2.5" fill="none"/>
-    <g class="fly"><path d="M300 60 q20 -14 40 0 q-20 -4 -40 0Z" fill="#fff"/></g>`,
 
 
 };
 
 const projects = [
-  { id: "event-horizon",  title: "Event Horizon",   desc: "Космос и чёрные дыры" },
-  { id: "star-voyage",    title: "Star Voyage",     desc: "Путешествие к звёздам" },
-  { id: "cubomir",        title: "Кубомир",         desc: "Мир, собранный из кубиков" },
   { id: "aquarium",       title: "Эволюция",        desc: "От первой клетки до человека — и ещё 160 существ" },
   { id: "rocket-builder", title: "Ракетостроитель", desc: "Собери 3D-ракету и улети на орбиту" },
   { id: "rick-morty",     title: "Рик и Морти",     desc: "Аркада: побег через порталы" },
   { id: "frontline",      title: "Линия фронта",    desc: "Стратегия на настоящей карте" },
   { id: "price-guess",    title: "Угадай цену",     desc: "Назови цену товара быстрее ИИ" },
-  { id: "school-portal",  title: "Школьный портал", desc: "Сайт класса: чат, новости, мини-игры" },
 ];
 
 function rand(seed) { let s = seed; return () => (s = (s * 16807) % 2147483647) / 2147483647; }
@@ -276,27 +239,6 @@ function stars(n, color, maxY = 300) {
     out += `<circle${cls} cx="${(r() * 400).toFixed(1)}" cy="${(r() * maxY).toFixed(1)}" r="${(r() * 1.6 + .5).toFixed(1)}" fill="${color}" style="animation-delay:${(r() * 2).toFixed(2)}s"/>`;
   }
   return out;
-}
-function cubes() {
-  // изометрические кубики: трава, земля, камень
-  const s = 26, out = [];
-  const iso = (x, y, z) => [200 + (x - y) * s, 175 + (x + y) * s / 2 - z * s];
-  const colors = { g: ["#7ccf4a", "#5aa834", "#3f8a24"], d: ["#b98552", "#94653a", "#7a5130"], s: ["#a9aeb8", "#878c96", "#6d717a"], w: ["#c4884a", "#9c6a36", "#83582c"], l: ["#4fbf4f", "#3a9c3a", "#2c7e2c"] };
-  const blocks = [];
-  for (let x = -2; x <= 2; x++) for (let y = -2; y <= 2; y++) {
-    blocks.push([x, y, 0, "d"]);
-    blocks.push([x, y, 1, (x === 2 && y === -2) ? "s" : "g"]);
-  }
-  blocks.push([2, -2, 2, "s"]);
-  blocks.push([-1, 0, 2, "w"], [-1, 0, 3, "w"], [-1, 0, 4, "l"], [-2, 0, 4, "l"], [-1, 1, 4, "l"], [-1, -1, 4, "l"], [0, 0, 4, "l"], [-1, 0, 5, "l"]);
-  blocks.sort((a, b) => (a[0] + a[1]) - (b[0] + b[1]) || a[2] - b[2]);
-  for (const [x, y, z, k] of blocks) {
-    const [cx, cy] = iso(x, y, z), c = colors[k], h = s / 2;
-    out.push(`<path d="M${cx} ${cy - s} l${s} ${h} l${-s} ${h} l${-s} ${-h}Z" fill="${c[0]}"/>`);
-    out.push(`<path d="M${cx - s} ${cy - h} l${s} ${h} v${s} l${-s} ${-h}Z" fill="${c[1]}"/>`);
-    out.push(`<path d="M${cx + s} ${cy - h} l${-s} ${h} v${s} l${s} ${-h}Z" fill="${c[2]}"/>`);
-  }
-  return out.join("");
 }
 
 const grid = document.getElementById("grid");
